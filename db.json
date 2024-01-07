@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Tony",
+      "uid": "tony@ironman",
+      "location": "US"
+    },
+    {
+      "name": "Thor",
+      "uid": "thor@jameshemsworth",
+      "location": "US",
+      "id": 2
+    },
+    {
+      "name": "Peter",
+      "uid": "peter@spiderman",
+      "location": "US",
+      "id": 3
+    }
+  ]
+}
