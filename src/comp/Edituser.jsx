@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Edit = () => {
   const navigate = useNavigate();
@@ -41,6 +43,7 @@ const Edit = () => {
   const formSubmit = async (e) => {
     e.preventDefault();
     await edit(); // Wait for the edit function to complete
+    toast.success("User updated successfully!"); // Show success toast after editing
     navigate("/home");
   };
 
@@ -85,10 +88,13 @@ const Edit = () => {
           />
         </div>
         <button type="submit" className="btn btn-sm btn-outline-info mt-3">
-          Add
+          Update
         </button>
-        <Link to={'/home'} className="btn btn-sm btn-outline-success mt-3 mx-4">Go Back</Link>
+        <Link to={"/home"} className="btn btn-sm btn-outline-success mt-3 mx-4">
+          Go Back
+        </Link>
       </div>
+      <ToastContainer />
     </form>
   );
 };

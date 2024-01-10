@@ -1,19 +1,19 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "Tony",
+      "name": "Tony Starck",
       "uid": "tony@ironman",
-      "location": "US"
+      "location": "US",
+      "id": 1
     },
     {
       "name": "Thor",
-      "uid": "thor@jameshemsworth",
-      "location": "US",
+      "uid": "thor@asgard.com",
+      "location": "asgard",
       "id": 2
     },
     {
-      "name": "Peter",
+      "name": "Peter Parker",
       "uid": "peter@spiderman",
       "location": "US",
       "id": 3

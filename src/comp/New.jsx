@@ -1,37 +1,38 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const New = () => {
-  // State variables for form inputs
-  let Navigate = useNavigate();
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [uid, setUid] = useState("");
   const [location, setLocation] = useState("");
 
-  // Event handler for form submission
   const formSubmit = async (event) => {
     try {
-      event.preventDefault(); // Prevent the form from submitting by default
+      event.preventDefault();
 
       if (!name || !uid || !location) {
-        // Check if any of the fields is empty
-        alert("Please fill in all fields.");
+        toast.error("Please fill in all fields.");
         return;
-      } // event.preventDefault();
+      }
+
       await fetch("http://localhost:3001/users", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json", // corrected typo here
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name: name, uid: uid, location: location }), // corrected typo here
+        body: JSON.stringify({ name, uid, location }),
       });
-
+      toast.success("User added successfully!");
       setName("");
       setUid("");
       setLocation("");
-      Navigate("/home");
-    } catch (e) {
-      console.log(e);
+      navigate("/home");
+    } catch (error) {
+      console.error("Error adding user:", error);
+      toast.error("Error adding user. Please try again.");
     }
   };
 
@@ -40,7 +41,7 @@ const New = () => {
       <form
         action=""
         method="post"
-        className="form-control container "
+        className="form-control container"
         onSubmit={formSubmit}
       >
         <div className="offset-2">
@@ -91,6 +92,7 @@ const New = () => {
           </Link>
         </div>
       </form>
+      <ToastContainer />
     </>
   );
 };

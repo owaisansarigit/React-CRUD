@@ -18,9 +18,9 @@ const Home = () => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-
         let userData = await response.json();
         setUsers(userData);
+        console.log(userData.length);
       } catch (error) {
         console.error("Error fetching data:", error.message);
         setIsError(true);
@@ -74,41 +74,47 @@ const Home = () => {
           Add New
         </Link>
       </div>
-      <table className="table text-center border rounded-lg">
-        <thead>
-          <tr>
-            <th className="col-2 text-dark fs-5">ID</th>
-            <th className="col-2 text-dark fs-5">Name</th>
-            <th className="col-3 text-dark fs-5">Uid</th>
-            <th className="col-2 text-dark fs-5">Edit/Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.name}</td>
-              <td>{user.uid}</td>
-              <td>
-                {" "}
-                <button
-                  className="btn btn-sm btn-outline-primary mx-2"
-                  onClick={() => editUser(user.id)}
-                >
-                  Edit
-                </button>{" "}
-                <button
-                  className="btn btn-sm btn-outline-danger mx-2"
-                  onClick={() => deleteUser(user.id)}
-                >
-                  Delete
-                </button>{" "}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <ToastContainer />
+      {users.length >= 1 ? (
+        <>
+          <table className="table text-center border rounded-lg">
+            <thead>
+              <tr>
+                <th className="col-2 text-dark fs-5">ID</th>
+                <th className="col-2 text-dark fs-5">Name</th>
+                <th className="col-3 text-dark fs-5">Uid</th>
+                <th className="col-2 text-dark fs-5">Edit/Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user) => (
+                <tr key={user.id}>
+                  <td>{user.id}</td>
+                  <td>{user.name}</td>
+                  <td>{user.uid}</td>
+                  <td>
+                    {" "}
+                    <button
+                      className="btn btn-sm btn-outline-primary mx-2"
+                      onClick={() => editUser(user.id)}
+                    >
+                      Edit
+                    </button>{" "}
+                    <button
+                      className="btn btn-sm btn-outline-danger mx-2"
+                      onClick={() => deleteUser(user.id)}
+                    >
+                      Delete
+                    </button>{" "}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <ToastContainer />
+        </>
+      ) : (
+        <p className="display-5 text-center">No users available.</p>
+      )}
     </div>
   );
 };
