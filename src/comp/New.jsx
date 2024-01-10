@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-const Statecomp = () => {
+const New = () => {
   // State variables for form inputs
   let Navigate = useNavigate();
   const [name, setName] = useState("");
@@ -95,4 +95,4 @@ const Statecomp = () => {
   );
 };
 
-export default Statecomp;
+export default New;
